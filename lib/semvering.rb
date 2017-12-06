@@ -13,29 +13,16 @@ class Semvering
   end
 
   def <=>(another)
-    case @major <=> another.major
-    when 1
-      return 1
-    when -1
-      return -1
+    case res = @major <=> another.major
+    when 1, -1
+      return res
     when 0
-      case @minor <=> another.minor
-      when 1
-        return 1
-      when -1
-        return -1
+      case res = @minor <=> another.minor
+      when 1, -1
+        return res
       when 0
         return @patch <=> another.patch
       end
     end
-    #if @major > another.major
-      #return 1
-    #elsif @major < another.major
-      #return -1
-    #else
-      #if @minor > another.minor
-        #return 1
-      #end
-    #end
   end
 end

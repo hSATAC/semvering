@@ -24,7 +24,6 @@ RSpec.describe Semvering do
       it "compares the major number" do
         ver1 = Semvering.new 1, 0, 0
         ver2 = Semvering.new 2, 0, 0
-
         expect( ver2 > ver1 ).to be true
       end
 
@@ -45,7 +44,6 @@ RSpec.describe Semvering do
       it "compares the major number" do
         ver1 = Semvering.new 1, 0, 0
         ver2 = Semvering.new 2, 0, 0
-
         expect( ver1 < ver2 ).to be true
       end
 
@@ -66,17 +64,14 @@ RSpec.describe Semvering do
       it "compares all numbers" do
         ver1 = Semvering.new 1, 0, 0
         ver2 = Semvering.new 1, 0, 0
-
         expect( ver1 == ver2 ).to be true
       end
     end
 
     describe "!=" do
-      it "compares all numbers" do
+      it "compares all properties" do
         ver1 = Semvering.new 1, 0, 0
-        ver2 = Semvering.new 1, 0, 0
-
-        expect( ver1 != ver2 ).to be false
+        expect( ver1 != ver1 ).to be false
       end
     end
 
