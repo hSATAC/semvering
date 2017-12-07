@@ -37,19 +37,22 @@ RSpec.describe Semvering do
       it "compares the major number" do
         ver1 = Semvering.new 1, 0, 0
         ver2 = Semvering.new 2, 0, 0
-        expect( ver2 > ver1 ).to be true
+        expect( ver2 >= ver1 ).to be true
+        expect( ver1 <= ver2 ).to be true
       end
 
       it "compares the minor number" do
         ver1 = Semvering.new 1, 1, 0
         ver2 = Semvering.new 1, 2, 0
-        expect( ver2 > ver1 ).to be true
+        expect( ver2 >= ver1 ).to be true
+        expect( ver1 <= ver2 ).to be true
       end
 
       it "compares the patch number" do
         ver1 = Semvering.new 1, 0, 1
         ver2 = Semvering.new 1, 0, 2
-        expect( ver2 > ver1 ).to be true
+        expect( ver2 >= ver1 ).to be true
+        expect( ver1 <= ver2 ).to be true
       end
 
       it "compares equal version" do
