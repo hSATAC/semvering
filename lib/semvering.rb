@@ -15,25 +15,18 @@ class Semvering
   end
 
   def <=>(another)
-    case res = @major <=> another.major
-    when 1, -1
-      return res
-    when 0
-      case res = @minor <=> another.minor
-      when 1, -1
-        return res
-      when 0
-        case res = @patch <=> another.patch
-        when 1, -1
-          return res
-        when 0
-          return 0 if @pre_release == another.pre_release
-          return 1 if @pre_release == nil && another.pre_release != nil
-          return -1 if @pre_release != nil && another.pre_release == nil
-          # TODO: Compare between different pre_release
-        end
-      end
+    # compare X, Y, Z in following order
+    [:major, :minor, :patch].each do |segment|
+      compare = self.send(segment) <=> another.send(segment)
+      return compare if compare != 0
     end
+
+    # compare pre_release
+    return 0 if @pre_release == another.pre_release
+    return 1 if @pre_release == nil && another.pre_release != nil
+    return -1 if @pre_release != nil && another.pre_release == nil
+    # TODO: Compare between different pre_release
+
   end
 
   private
